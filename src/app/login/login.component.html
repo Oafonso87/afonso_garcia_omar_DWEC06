@@ -1,0 +1,92 @@
+<body>
+    <main>        
+        <header>
+            <div class="header-left">
+                <a href="index.html" class="enlace">
+                    <img src="img/tv_200.png" alt="Logo de la web" class="logo">
+                    <h1>Las 200 Mejores TV Series</h1>
+                </a>                
+            </div>
+            <div class="social">
+              <a href="https://x.com/" target="_blank"><img src="img/x.png" alt="X"></a>
+              <a href="https://www.instagram.com/" target="_blank"><img src="img/instagram.png" alt="Instagram"></a>
+              <a href="https://www.tiktok.com/" target="_blank"><img src="img/tiktok.png" alt="TikTok"></a>
+              <a href="https://www.youtube.com/" target="_blank"><img src="img/youtube.png" alt="Youtube"></a>
+            </div>
+        </header>
+        <nav class="nav-barra">
+            <a [routerLink]="['/']">Top 200</a>
+            <a [routerLink]="['/reseñas']">Reseñas</a>
+            <a [routerLink]="['/login']">Login</a>            
+        </nav>
+        <section>
+            <div *ngIf="texto">
+                <p>Si ya estás registrado, <span (click)="reglog('login')" class="click">inicia sesión</span>; de lo contrario, 
+                  <span (click)="reglog('registrar')" class="click">regístrate</span>.
+                </p>
+            </div>
+            <form *ngIf="registrar" #formConfig="ngForm" (ngSubmit)="recogerDatos()">     
+                <div>
+                  <label for="nombre">Nombre de Usuario:</label>
+                  <input type="text" id="nombre" name="nombre" [(ngModel)]="nombre" #campoNombre="ngModel" required>
+                  <span *ngIf="campoNombre.touched && nombre.trim() === ''" style="display: block; color: red;">
+                    El nombre de usuario no puede estar vacío
+                  </span>
+                  <span *ngIf="campoNombre.touched && nombre.trim() !== ''" style="display: block; color: green;">
+                    &#10003;
+                  </span>
+                </div>            
+                <div>
+                  <label for="email">Email:</label>
+                  <input type="text" id="email" name="email" [(ngModel)]="email" #campoMail="ngModel" required>
+                  <span *ngIf="campoMail.touched && email.trim() === ''" style="display: block; color: red;">
+                    El email no puede estar vacío
+                  </span>
+                  <span *ngIf="campoMail.touched && email.trim() !== ''" style="display: block; color: green;">
+                    &#10003;
+                  </span>
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="text" id="password" name="password" [(ngModel)]="password" #campoPass="ngModel" required>
+                    <span *ngIf="campoPass.touched && password.trim() === ''" style="display: block; color: red;">
+                      El email no puede estar vacío
+                    </span>
+                    <span *ngIf="campoPass.touched && password.trim() !== ''" style="display: block; color: green;">
+                      &#10003;
+                    </span>
+                </div>             
+                <button type="submit" [disabled]="!formConfig.form.valid">Registrarse</button>      
+              </form>
+              <div *ngIf="mensaje" class="mensaje">
+                {{ mensaje }}
+              </div>
+              <form *ngIf="login" #formConfig="ngForm" (ngSubmit)="validarUsuario()">
+                <div>
+                    <label for="nombre">Nombre de Usuario:</label>
+                    <input type="text" id="nombre" name="nombre" [(ngModel)]="nombre" #campoNombre="ngModel" required>
+                    <span *ngIf="campoNombre.touched && nombre.trim() === ''" style="display: block; color: red;">
+                      El nombre de usuario no puede estar vacío
+                    </span>
+                    <span *ngIf="campoNombre.touched && nombre.trim() !== ''" style="display: block; color: green;">
+                      &#10003;
+                    </span>
+                  </div>
+                  <div>
+                    <label for="password">Password:</label>
+                    <input type="text" id="password" name="password" [(ngModel)]="password" #campoPass="ngModel" required>
+                    <span *ngIf="campoPass.touched && password.trim() === ''" style="display: block; color: red;">
+                      El password no puede estar vacío
+                    </span>
+                    <span *ngIf="campoPass.touched && password.trim() !== ''" style="display: block; color: green;">
+                      &#10003;
+                    </span>
+                </div> 
+                <button type="submit" [disabled]="!formConfig.form.valid">Login</button>
+              </form>
+              <div *ngIf="mensaje2" class="mensaje">
+                {{ mensaje2 }}
+              </div>
+        </section>
+    </main>    
+</body>

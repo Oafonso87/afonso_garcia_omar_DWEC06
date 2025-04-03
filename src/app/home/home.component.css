@@ -1,0 +1,251 @@
+* {    
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-image: linear-gradient(to right, black, rgb(21, 21, 203));
+    color: white;
+    padding: 15px 20px;
+    height: 150px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;  
+    z-index: 1000;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    margin-left: 20px;
+}
+
+.logo {
+    width: 120px;
+    height: 120px;
+    border-radius: 10%; 
+}
+
+h1 {
+    font-size: 26px;
+    margin: 0;
+}
+
+.enlace {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    align-items: center; 
+    width: 100%;
+    cursor: pointer;
+    gap: 35px;
+}
+
+.nombre {
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.cantidad {
+    font-size: 18px;
+}
+
+.nav-barra {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #3498db;
+    position: fixed;
+    top: 150px;
+    left: 0;
+    width: 100%;    
+    padding: 10px;
+    z-index: 999;
+}
+
+.nav-barra a { 
+    text-decoration: none;
+    color: #333;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-weight: bold;
+    border: 2px solid #818181;
+    transition: all 0.3s ease;
+}
+
+.nav-barra a:hover {
+    border-color: #3498db;
+    background-color: #f9f9f9;
+    color: #3498db;
+    transform: scale(0.9);
+}  
+
+#contenedorSeries {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+    justify-items: center;
+    margin-top: 200px;
+}
+
+#loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 10;
+}
+
+#loading img {
+    width: 80px;
+}
+
+.tarjeta {
+    width: 300px;
+    height: 300px;
+    perspective: 1000px;
+    position: relative;
+    margin: 0; 
+}
+
+.tarjeta-inner {
+    width: 100%;
+    height: 100%;
+    transition: transform 1s ease 0.5s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+.tarjeta:hover .tarjeta-inner {
+    transform: rotateY(180deg);
+    box-shadow: -1px 1px 40px blue;
+}
+
+.tarjeta-front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 5px double #3498db;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    background-color: #fff;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+}
+
+.tarjeta-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.tarjeta-front .ranking {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0,0,0,0.8);
+    color: #fff;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    z-index: 2;
+}
+
+.tarjeta-front .rating {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.8);
+    color: #fff;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    z-index: 2;
+}
+
+.tarjeta-front .titulo {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    z-index: 2;
+}
+
+.tarjeta-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to right, black, rgb(21, 21, 203));
+    border: 5px double #3498db;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    text-align: center;
+}
+
+.tarjeta-back .descripcion p {
+    color: white;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.social {
+    display: flex;
+    flex-direction: row;
+    margin-right: 100px;
+    gap: 15px;
+    height: 50px;
+    width: 185px;
+    background-color: rgba(255, 255, 255, 0.3); 
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.social img {
+    height: 30px;
+    width: 30px;
+}
+
+.social img:hover {
+    transform: scale(1.2);
+}

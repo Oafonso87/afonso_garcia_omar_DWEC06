@@ -1,0 +1,120 @@
+<body>
+    <main>        
+        <header>
+            <div class="header-left">
+                <a href="index.html" class="enlace">
+                    <img src="img/tv_200.png" alt="Logo de la web" class="logo">
+                    <h1>Las 200 Mejores TV Series</h1>
+                </a>                
+            </div>
+            <div class="social">
+              <a href="https://x.com/" target="_blank"><img src="img/x.png" alt="X"></a>
+              <a href="https://www.instagram.com/" target="_blank"><img src="img/instagram.png" alt="Instagram"></a>
+              <a href="https://www.tiktok.com/" target="_blank"><img src="img/tiktok.png" alt="TikTok"></a>
+              <a href="https://www.youtube.com/" target="_blank"><img src="img/youtube.png" alt="Youtube"></a>
+            </div>
+        </header>
+        <nav class="nav-barra">
+            <a [routerLink]="['/']">Top 200</a>
+            <a [routerLink]="['/reseñas']">Reseñas</a>
+            <a [routerLink]="['/login']">Login</a>            
+        </nav>
+        <section *ngIf="listado" class="rese-sec">
+            <button class="boton-res" (click)="escribirReview()">Escribir una Reseña</button>
+            <div *ngFor="let review of reviews" class="review-card">
+              <div *ngIf="review.usuario === usuarioObj?.nombre" class="editar" (click)="editarReview(review.id)">
+                <img src="img/edit.png" alt="">
+              </div>
+                <div class="review-header">
+                  <h3 class="serie-name">{{ review.serie }}</h3>
+                  <div class="review-rating">Nota: <span>{{ review.puntuacion }}</span>/10</div>
+                </div>
+                <div class="review-body">
+                  <p class="review-comment">{{ review.comentario }}</p>
+                </div>
+                <div class="review-footer">
+                  <span class="review-user">Por: {{ review.usuario }}</span>
+                  <span class="review-date">{{ review.fecha * 1000 | date:'dd/MM/yyyy' }}</span>
+                </div>
+              </div>
+        </section> 
+
+          <form *ngIf="formReview" #formConfig="ngForm" (ngSubmit)="publicarReview()">     
+            <div>
+              <label for="serie">Título de la Serie:</label>
+              <input type="text" id="serie" name="serie" [(ngModel)]="serie" #campoSerie="ngModel" required>
+              <span *ngIf="campoSerie.touched && serie.trim() === ''" style="display: block; color: red;">
+                El título de la serie no puede estar vacío
+              </span>
+              <span *ngIf="campoSerie.touched && serie.trim() !== ''" style="display: block; color: green;">
+                &#10003;
+              </span>
+            </div>            
+            <div>
+              <label for="usuario">Nombre de Usuario:</label>
+              <input type="text" id="usuario" name="usuario" [(ngModel)]="usuario" #campoUsuario="ngModel" required>
+              <span *ngIf="campoUsuario.touched && usuario.trim() === ''" style="display: block; color: red;">
+                El nombre de usuario no puede estar vacío
+              </span>
+              <span *ngIf="campoUsuario.touched && usuario.trim() !== ''" style="display: block; color: green;">
+                &#10003;
+              </span>
+            </div>
+            <div>
+              <label for="review">Reseña:</label>
+              <textarea id="review" name="review" [(ngModel)]="review" #campoRev="ngModel" required></textarea>
+              <span *ngIf="campoRev.touched && review.trim() === ''" style="display: block; color: red;">
+                La reseña no puede estar vacía
+              </span>
+              <span *ngIf="campoRev.touched && review.trim() !== ''" style="display: block; color: green;">
+                &#10003;
+              </span>
+            </div>
+            <div>
+              <label for="nota">Puntuación:</label>
+              <input type="number" id="nota" name="nota" [(ngModel)]="nota" #campoNota="ngModel" required min="0" max="10">
+              <span *ngIf="campoNota.touched && (nota < 0 || nota > 10)" style="display: block; color: red;">
+                La nota debe estar entre 0 y 10
+              </span>
+              <span *ngIf="campoNota.touched && nota >= 0 && nota <= 10" style="display: block; color: green;">
+                &#10003;
+              </span>
+            </div>             
+            <button type="submit" [disabled]="!formConfig.valid">Publicar Reseña</button>      
+          </form>
+
+          <form *ngIf="formEdit" #formConfig="ngForm" (ngSubmit)="actualizarReview()">
+            <button class="boton-borrar" (click)="borrarReview(idReviewEdit)">Borrar Reseña</button>
+            <div>
+              <label for="serie">Título de la Serie:</label>
+              <input type="text" id="serie" name="serie" [(ngModel)]="serie" #campoSerie="ngModel" readonly required>
+            </div>
+            <div>
+              <label for="usuario">Nombre de Usuario:</label>
+              <input type="text" id="usuario" name="usuario" [(ngModel)]="usuario" #campoUsuario="ngModel" readonly required>
+            </div>
+            <div>
+              <label for="review">Reseña:</label>
+              <textarea id="review" name="review" [(ngModel)]="review" #campoRev="ngModel" required></textarea>
+              <span *ngIf="campoRev.touched && review.trim() === ''" style="display: block; color: red;">
+                La reseña no puede estar vacía
+              </span>
+              <span *ngIf="campoRev.touched && review.trim() !== ''" style="display: block; color: green;">
+                &#10003;
+              </span>
+            </div>
+            <div>
+              <label for="nota">Puntuación:</label>
+              <input type="number" id="nota" name="nota" [(ngModel)]="nota" #campoNota="ngModel" required min="0" max="10">
+              <span *ngIf="campoNota.touched && (nota < 0 || nota > 10)" style="display: block; color: red;">
+                La nota debe estar entre 0 y 10
+              </span>
+              <span *ngIf="campoNota.touched && nota >= 0 && nota <= 10" style="display: block; color: green;">
+                &#10003;
+              </span>
+            </div>
+            <button type="submit">Actualizar Reseña</button>
+          </form>
+
+    </main>    
+</body>

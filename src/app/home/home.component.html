@@ -1,0 +1,48 @@
+<body>
+  <main>        
+    <header>
+      <div class="header-left">
+        <a href="index.html" class="enlace">
+          <img src="img/tv_200.png" alt="Logo de la web" class="logo">
+          <h1>Las 200 Mejores TV Series</h1>
+        </a>                
+      </div>
+      <div class="social">
+        <a href="https://x.com/" target="_blank"><img src="img/x.png" alt="X"></a>
+        <a href="https://www.instagram.com/" target="_blank"><img src="img/instagram.png" alt="Instagram"></a>
+        <a href="https://www.tiktok.com/" target="_blank"><img src="img/tiktok.png" alt="TikTok"></a>
+        <a href="https://www.youtube.com/" target="_blank"><img src="img/youtube.png" alt="Youtube"></a>
+      </div>            
+    </header>
+    <nav class="nav-barra">
+      <a [routerLink]="['/']">Top 200</a>
+      <a [routerLink]="['/reseñas']">Reseñas</a>
+      <a [routerLink]="['/login']">Login</a>            
+    </nav>
+    <section id="contenedorSeries">
+      <div *ngIf="loading" id="loading">
+        <img src="img/loading.gif" alt="Cargando...">
+      </div>
+      <div *ngFor="let serie of series; let i = index" class="tarjeta">
+        <div class="tarjeta-inner">
+          <div class="tarjeta-front">
+            <span class="ranking">#{{ i + 1 }}</span>
+            <span class="rating">{{ serie.rating }}</span>
+            <img [src]="serie.image" [alt]="serie.name">
+            <div class="titulo">
+              {{ serie.name }}
+            </div>
+          </div>
+          <div class="tarjeta-back">
+            <div class="descripcion">
+              <p>Géneros: {{serie.genres}}</p>
+              <p>Estreno: {{serie.premiered}}</p>
+              <p>Cadena: {{serie.network}}</p>
+              <p [innerHTML]="serie.summary.split(' ').slice(0, 50).join(' ') + '...'"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>                
+  </main>
+</body>

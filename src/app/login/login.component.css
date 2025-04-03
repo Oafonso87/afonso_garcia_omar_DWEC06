@@ -1,0 +1,169 @@
+* {    
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-image: linear-gradient(to right, black, rgb(21, 21, 203));
+    color: white;
+    padding: 15px 20px;
+    height: 150px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;  
+    z-index: 1000;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    margin-left: 20px;
+}
+
+.logo {
+    width: 120px;
+    height: 120px;
+    border-radius: 10%; 
+}
+
+h1 {
+    font-size: 26px;
+    margin: 0;
+}
+
+.enlace {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    align-items: center; 
+    width: 100%;
+    cursor: pointer;
+    gap: 35px;
+}
+
+.nav-barra {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #3498db;
+    /* gap: 15px; */
+    position: fixed;
+    top: 150px;
+    left: 0;
+    width: 100%;    
+    padding: 10px;
+    z-index: 999;
+}
+
+.nav-barra a { 
+    text-decoration: none;
+    color: #333;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-weight: bold;
+    border: 2px solid #818181;
+    transition: all 0.3s ease;
+}
+
+.nav-barra a:hover {
+    border-color: #3498db;
+    background-color: #f9f9f9;
+    color: #3498db;
+    transform: scale(0.9);
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    justify-items: center;
+    margin: 250px auto 0 auto; /* Centrado horizontalmente */
+    max-width: 600px;
+    justify-content: center;
+    align-items: center;
+    background-color: bisque;
+    border-radius: 25px;
+}
+
+.click {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.click:hover {
+    color: blue;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+button {
+    border-radius: 15px;
+    display: inline-block;
+    width: auto;
+    padding: 8px 15px;
+    text-align: center;
+    background-image: linear-gradient(to bottom, gray, white);
+}
+
+button:enabled {
+    cursor: pointer;
+}
+
+
+
+span {
+    text-align: center;
+}
+
+.reviews-container {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.social {
+    display: flex;
+    flex-direction: row;
+    margin-right: 100px;
+    gap: 15px;
+    height: 50px;
+    width: 185px;
+    background-color: rgba(255, 255, 255, 0.3); 
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.social img {
+    height: 30px;
+    width: 30px;
+}
+
+.social img:hover {
+    transform: scale(1.2);
+}
